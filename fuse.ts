@@ -21,7 +21,7 @@ class Context {
         httpServer: false
       },
       electron: {
-        nodeIntegration: true
+        nodeIntegration: false
       },
       entry: 'src/renderer/index.ts',
       modules: ['node_modules'],
@@ -30,6 +30,20 @@ class Context {
         publicPath: './',
         template: 'src/renderer/index.html'
       },
+      watcher: false
+    })
+  }
+  getPreloadConfig () {
+    return fusebox({
+      dependencies: {
+        serverIgnoreExternals: true
+      },
+      electron: {
+        nodeIntegration: false
+      },
+      entry: 'src/renderer/preload.ts',
+      modules: ['node_modules'],
+      target: 'server',
       watcher: false
     })
   }
@@ -47,6 +61,14 @@ task('default', async ctx => {
     }
   })
 
+  const preloadConfig = ctx.getPreloadConfig();
+  await preloadConfig.runDev({
+    bundles: {
+      distRoot: 'dist/renderer',
+      app: 'preload.js'
+    }
+  })
+
   const electronMain = ctx.getMainConfig();
   const { onComplete } = await electronMain.runDev({
     bundles: {
@@ -55,6 +77,7 @@ task('default', async ctx => {
       vendor: 'vendor.js'
     }
   })
+
   onComplete(({ electron }) => {
     electron?.start();
   })
@@ -69,6 +92,15 @@ task('build', async ctx => {
       app: 'app.js'
     }
   })
+
+  const preloadConfig = ctx.getPreloadConfig();
+  await preloadConfig.runDev({
+    bundles: {
+      distRoot: 'dist/renderer',
+      app: 'preload.js'
+    }
+  })
+
 
   const electronMain = ctx.getMainConfig();
   await electronMain.runDev({

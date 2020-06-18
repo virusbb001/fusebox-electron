@@ -12,6 +12,7 @@
   "files": [
     "./fuse.ts",
     "./src/renderer/index.ts",
+    "./src/renderer/preload.ts",
     "./src/main/main.ts"
   ]
 }

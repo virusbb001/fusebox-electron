@@ -1,11 +1,13 @@
 import * as path from 'path';
 import * as url from 'url';
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: false,
+      contextIsolation: false,
+      preload: path.join(app.getAppPath(), '..', 'renderer', 'preload.js'),
     }
   });
 
@@ -23,4 +25,8 @@ app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
   app.quit();
+})
+
+ipcMain.handle('my-invokable-ipc', (_event, msg: string) => {
+  return `return main: ${msg}`
 })
