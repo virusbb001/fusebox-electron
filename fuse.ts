@@ -8,8 +8,7 @@ class Context {
       },
       entry: './src/main/main.ts',
       modules: [ 'node_modules'],
-      target: 'server',
-      watcher: false
+      target: 'server'
     })
   }
   getRendererConfig () {
@@ -29,8 +28,7 @@ class Context {
       webIndex: {
         publicPath: './',
         template: 'src/renderer/index.html'
-      },
-      watcher: false
+      }
     })
   }
   getPreloadConfig () {
@@ -43,8 +41,7 @@ class Context {
       },
       entry: 'src/renderer/preload.ts',
       modules: ['node_modules'],
-      target: 'server',
-      watcher: false
+      target: 'server'
     })
   }
 }
@@ -86,7 +83,7 @@ task('default', async ctx => {
 task('build', async ctx => {
   rm('./dist');
   const rendererConfig = ctx.getRendererConfig();
-  await rendererConfig.runDev({
+  await rendererConfig.runProd({
     bundles: {
       distRoot: 'dist/renderer',
       app: 'app.js'
@@ -94,7 +91,7 @@ task('build', async ctx => {
   })
 
   const preloadConfig = ctx.getPreloadConfig();
-  await preloadConfig.runDev({
+  await preloadConfig.runProd({
     bundles: {
       distRoot: 'dist/renderer',
       app: 'preload.js'
@@ -103,7 +100,7 @@ task('build', async ctx => {
 
 
   const electronMain = ctx.getMainConfig();
-  await electronMain.runDev({
+  await electronMain.runProd({
     bundles: {
       distRoot: 'dist/main',
       app: 'app.js',
