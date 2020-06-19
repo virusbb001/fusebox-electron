@@ -1,10 +1,16 @@
 {
   "name": "fusebox-electron",
+  "description": "My first app using electron fuse",
+  "author": {
+    "name": "virusbb001"
+  },
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/main/app.js",
   "license": "MIT",
   "scripts": {
-    "fuse": "ts-node fuse"
+    "fuse": "ts-node fuse",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "devDependencies": {
     "electron": "^9.0.4",
@@ -15,5 +21,17 @@
     "react": "^16.13.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
+  },
+  "build": {
+    "appId": "io.github.virusbb001.fusebox-electron",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "target": "portable"
+    },
+    "directories": {
+      "output": "build"
+    }
   }
 }
