@@ -2,12 +2,12 @@ import * as path from 'path';
 import * as url from 'url';
 import { app, BrowserWindow, ipcMain } from 'electron';
 
-const isProd = process.env.NODE_ENV === 'production'
+const isDev = process.env.NODE_ENV === 'development'
 
 function createWindow () {
-  const rendererLocation = isProd
-    ? path.join(app.getAppPath(), 'dist', 'renderer')
-    : path.join(app.getAppPath(), '..', 'renderer')
+  const rendererLocation = isDev
+    ? path.join(app.getAppPath(), '..', 'renderer')
+    : path.join(app.getAppPath(), 'dist', 'renderer')
   const mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: false,
@@ -23,7 +23,6 @@ function createWindow () {
       slashes: true
     })
   )
-
 }
 
 app.on('ready', createWindow)

@@ -10,7 +10,7 @@
   "scripts": {
     "fuse": "ts-node fuse",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "yarn fuse build && electron-builder"
   },
   "devDependencies": {
     "electron": "^9.0.4",
