@@ -8,9 +8,10 @@
   "main": "./dist/main/app.js",
   "license": "MIT",
   "scripts": {
+    "build": "yarn fuse build && electron-builder",
     "fuse": "ts-node fuse",
     "pack": "electron-builder --dir",
-    "dist": "yarn fuse build && electron-builder"
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "devDependencies": {
     "electron": "^9.0.4",
