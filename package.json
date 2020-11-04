@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "devDependencies": {
-    "electron": "^9.3.0",
+    "electron": "^9.3.1",
     "electron-builder": "^22.7.0",
     "fuse-box": "^4.0.0-next.439",
     "node-sass": "^4.14.1",
