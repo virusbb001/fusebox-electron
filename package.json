@@ -17,7 +17,7 @@
     "electron": "^9.4.0",
     "electron-builder": "^22.7.0",
     "fuse-box": "^4.0.0-next.439",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "postcss": "^7.0.36",
     "react": "^16.13.1",
     "ts-node": "^8.10.2",
