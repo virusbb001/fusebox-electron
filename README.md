@@ -1,4 +1,6 @@
-# fuse-box and Electron
+# fuse-box and Electron(Archived)
+
+I archived this repository because I stop using fusebox.
 
 ## Build
 
